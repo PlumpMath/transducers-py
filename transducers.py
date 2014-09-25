@@ -32,7 +32,7 @@ def sequence(f, data):
         return transduce(f, lambda x, y: chain(x, iter((y,))), iter(tuple()), data)
     else:
         if(hasattr(data, '__append__') and hasattr(data, 'empty')):
-            return transduce(f, data.append, data.empty(), data)
+            return transduce(f, data.__append__, data.empty(), data)
         else:
             raise ProtocolException(
                 "Not implemented __append__ and __empty__ protocols for type: {}".format(type(data)))
